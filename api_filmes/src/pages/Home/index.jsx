@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Container, MovieList, Movie } from "./styles";
 import { APIKey } from "../../config/key";
+import { Link } from "react-router-dom";
+import { image_path } from "../../config/image_path";
 
 export default function Home(){
 
     const [movies, setMovies] = useState([])
-    const image_path = 'https://image.tmdb.org/t/p/w500'
 
     useEffect(() => {
         const options = {
@@ -30,7 +31,7 @@ export default function Home(){
                 {movies.map(movie => {
                     return(
                         <Movie key={movie.id}>
-                            <a href="https://www.google.com"><img src={`${image_path}${movie.poster_path}`}/></a>
+                            <Link to={`/details/${movie.id}`}><img src={`${image_path}${movie.poster_path}`}/></Link>
                             <span>{movie.title}</span>
                         </Movie>
                     );
